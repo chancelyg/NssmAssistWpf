@@ -1,7 +1,7 @@
-﻿<Application x:Class="NssmAssistUI.App"
+﻿<Application x:Class="NssmAssistWpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:NssmAssistUI"
+             xmlns:local="clr-namespace:NssmAssistWpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="BtnInstallStyle" TargetType="Button">

@@ -8,3 +8,6 @@
 /.vs/NssmAssistUI/v16
 /NssmAssistUI/bin
 /NssmAssistUI/obj
+/NssmAssistWpf/bin
+/NssmAssistWpf/obj
+/.vs/NssmAssistWpf/v16

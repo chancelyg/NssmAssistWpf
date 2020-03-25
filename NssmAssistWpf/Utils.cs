@@ -5,7 +5,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 
-namespace NssmAssistUI
+namespace NssmAssistWpf
 {
     /// <summary>
     /// Utils Class
