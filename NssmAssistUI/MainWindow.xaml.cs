@@ -38,26 +38,7 @@ namespace NssmAssistUI
             {
                 serviceInfoEntity = JsonConvert.DeserializeObject<ServiceInfoEntity>(File.ReadAllText(serviceInfoPath));
                 LogInfo("程序启动");
-                LogInfo("正在检查服务状态");
-                bool isInstalled = Utils.VerifiyServiceExist(serviceInfoEntity.ServiceName);
-                if (isInstalled)
-                {
-                    LogInfo("服务已安装");
-                }
-                if (!isInstalled)
-                {
-                    LogInfo("服务未安装");
-                    return;
-                }
-                bool isRunning = Utils.VerifiyServiceRunning(serviceInfoEntity.ServiceName);
-                if (isRunning)
-                {
-                    LogInfo("服务正在运行中");
-                }
-                if (!isRunning)
-                {
-                    LogInfo("服务已安装但未运行");
-                }
+                CheckServiceStatus();
             }
             catch (Exception e)
             {
@@ -80,20 +61,25 @@ namespace NssmAssistUI
             if (!File.Exists(nssmPath))
             {
                 LogWarn("缺失依赖插件nssm，安装失败");
+                SetButtonStatus(true);
                 return;
+            }
+            if ("./".Equals(serviceInfoEntity.ServiceProgramPath.Substring(0, 2))) {
+                serviceInfoEntity.ServiceProgramPath = serviceInfoEntity.ServiceProgramPath.Remove(0, 2);
+                serviceInfoEntity.ServiceProgramPath = AppDomain.CurrentDomain.BaseDirectory + serviceInfoEntity.ServiceProgramPath;
             }
             if (!File.Exists(serviceInfoEntity.ServiceProgramPath))
             {
-                LogWarn("目标客户端不存在，安装失败");
+                LogWarn("服务要运行的程序不存在，安装失败");
+                SetButtonStatus(true);
                 return;
             }
+            serviceInfoEntity.ServiceProgramPath = serviceInfoEntity.ServiceProgramPath.Replace("/", "\\\\");
             Action<string> outputAction = (s) => { LogInfo(s); };
             Utils.ExecuteCommand(string.Format("\"{0}\" install \"{1}\" \"{2}\"", nssmPath, serviceInfoEntity.ServiceName, serviceInfoEntity.ServiceProgramPath), 0, outputAction);
             Utils.ExecuteCommand(string.Format("\"{0}\" start \"{1}\"", nssmPath, serviceInfoEntity.ServiceName), 0, outputAction);
-            if (!Utils.VerifiyServiceRunning(serviceInfoEntity.ServiceName))
-            {
-                LogWarn("警告：注册服务不成功！请确保退出所有杀毒软件后使用【管理员权限运行】本程序点击修复程序");
-            };
+            LogWarn(Utils.VerifiyServiceRunning(serviceInfoEntity.ServiceName)?"服务安装成功":
+                "警告：注册服务不成功！请确保退出所有杀毒软件后使用【管理员权限运行】本程序点击修复程序");
             SetButtonStatus(true);
         }
 
@@ -131,10 +117,11 @@ namespace NssmAssistUI
                 LogError(ex, "服务卸载失败");
             }
         }
-        private void rtbLog_TextChanged(object sender, TextChangedEventArgs e)
+        public void btnCheck_Click(object sender, RoutedEventArgs e)
         {
-            rtbLog.ScrollToEnd();
+            CheckServiceStatus();
         }
+        
         private void SetButtonStatus(bool status)
         {
             this.Dispatcher.Invoke(new Action(() =>
@@ -143,11 +130,9 @@ namespace NssmAssistUI
                 this.btnRemove.IsEnabled = status;
             }));
         }
-
         #endregion
 
         #region Log Module
-
         private void LogWarn(string text, params string[] strings)
         {
             text = string.Format(text, strings);
@@ -180,7 +165,34 @@ namespace NssmAssistUI
                 this.rtbLog.AppendText(logText);
 
             }));
-        } 
+        }
+        private void rtbLog_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            rtbLog.ScrollToEnd();
+        }
         #endregion
+
+        private void CheckServiceStatus() {
+            LogInfo("正在检查服务状态");
+            bool isInstalled = Utils.VerifiyServiceExist(serviceInfoEntity.ServiceName);
+            if (isInstalled)
+            {
+                LogInfo("服务已安装");
+            }
+            if (!isInstalled)
+            {
+                LogInfo("服务未安装");
+                return;
+            }
+            bool isRunning = Utils.VerifiyServiceRunning(serviceInfoEntity.ServiceName);
+            if (isRunning)
+            {
+                LogInfo("服务正在运行中");
+            }
+            if (!isRunning)
+            {
+                LogInfo("服务已安装但未运行");
+            }
+        }
     }
 }

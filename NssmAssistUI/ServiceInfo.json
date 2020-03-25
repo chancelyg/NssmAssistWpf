@@ -1,5 +1,5 @@
 ﻿{
-  "ServiceName": "",
-  "ServiceProgramPath": "",
+  "ServiceName": "TYErpAssistLogin",
+  "ServiceProgramPath": "./TYErpAssistLogin.exe",
   "ServiceProcessAlias": ""
 }

@@ -14,7 +14,6 @@ namespace NssmAssistUI
         public ServiceInfoEntity() { }
 
         public string ServiceName { get; set; }
-
         public string ServiceProgramPath { get; set; }
         public string ServiceProcessAlias { get; set; }
     }

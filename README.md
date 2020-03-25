@@ -20,7 +20,11 @@
 - ServiceProgramPath：服务运行的程序
 - ServiceProcessAlias：程序别名（如服务停止之后需要杀死相关非服务进程则填写该项，否则不填即可）
 
-其中 **ServiceProgramPath** 可以填写绝对路径与相对路径，相对路径使用 ./ 代表当前运行程序的目录下，之后直接运行程序点击安装服务即可
+其中 **ServiceProgramPath** 可以填写绝对路径与相对路径，格式示例如下
+- 绝对路径：E:/FirstTry/hello_world.exe
+- 相对路径：./hello_world.exe
+
+接着运行程序点击安装服务即可
 
 # 示例
 修改配置文件如下
