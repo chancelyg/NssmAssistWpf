@@ -1,0 +1,28 @@
+﻿<Window x:Class="NssmAssistUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NssmAssistUI"
+        mc:Ignorable="d"
+        Title="注册后台服务" Height="720" Width="480" ResizeMode="NoResize">
+    <DockPanel>
+        <Label DockPanel.Dock="Top" Content="程序运行日志" Margin="10,10,10,0" FontWeight="Bold" FontSize="13"></Label>
+        <RichTextBox Name="rtbLog" DockPanel.Dock="Top" Height="580" IsReadOnly="True" Margin="10,0,10,0" TextChanged="rtbLog_TextChanged" FontSize="12"></RichTextBox>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="85" />
+            </Grid.ColumnDefinitions>
+            <Button Name="btnInstall" Style="{StaticResource BtnInstallStyle}"  Grid.Row="1" Grid.Column="1" Content="安装服务" Margin="10,0,10,0" Click="btnInstall_Click"></Button>
+            <Button Name="btnRemove" Style="{StaticResource BtnRemoveStyle}" Grid.Row="1" Grid.Column="3" Content="卸载服务" Margin="10,0,10,0" Click="btnRemove_Click"></Button>
+        </Grid>
+    </DockPanel>
+</Window>
