@@ -38,7 +38,10 @@ NssmAssistWpf支持把本地EXE/BAT等执行文件注册成后台服务，也支
 对于所有实际引用到的文件例如NSSM.exe/ProgramArgs.json/等文件都支持使用HTTP链接的，可参考下面的例子
 
 ## 使用例子
-例1 程序均位于本地：允许注册一个在当前目录下的HelloWorld.exe程序为后台服务，假设NSSM.exe程序也在当前目录下
+**例1 程序均位于本地**
+
+允许注册一个在当前目录下的HelloWorld.exe程序为后台服务，假设NSSM.exe程序也在当前目录下
+
 目录结构应如下
 - NssmAssistWpf.exe
 - Newtonsoft.Json.dll
@@ -78,7 +81,10 @@ ProgramArgs.json文件
 }
 ```
 
-例2 程序均位于HTTP服务器上：允许注册一个位于HTTP服务器上的HelloWorld.exe程序为后台服务，假设NSSM.exe程序也在HTTP服务器上
+**例2 程序均位于HTTP服务器上**
+
+允许注册一个位于HTTP服务器上的HelloWorld.exe程序为后台服务，假设NSSM.exe程序也在HTTP服务器上
+
 目录结构应如下
 - NssmAssistWpf.exe
 - Newtonsoft.Json.dll
