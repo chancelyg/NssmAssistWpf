@@ -1,0 +1,18 @@
+﻿{
+  "ProgramTitle": "",
+  "NSSMInfo": {
+    "Url": "",
+    "HttpAuthBasic": ""
+  },
+  "Services": [
+    {
+      "ServiceAlias": "",
+      "ServiceName": "",
+      "ServiceProgramPath": "",
+      "ServiceProgramName": "",
+      "HttpAuthBasic": "",
+      "DependentService": null
+    }
+  ]
+
+}

@@ -11,3 +11,5 @@
 /NssmAssistWpf/bin
 /NssmAssistWpf/obj
 /.vs/NssmAssistWpf/v16
+/.vs/NssmAssistWpf/config
+/packages/SharpZipLib.0.86.0

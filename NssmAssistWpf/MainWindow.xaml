@@ -4,11 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NssmAssistWpf"
-        mc:Ignorable="d"
-        Title="注册后台服务" Height="720" Width="480" ResizeMode="NoResize">
+        mc:Ignorable="d" Height="720" Width="480" ResizeMode="NoResize">
     <DockPanel>
+        <Label DockPanel.Dock="Top" Content="服务列表" Margin="10,10,10,0" FontWeight="Bold" FontSize="13"></Label>
+        <ListView x:Name="lvServices" Margin="10,0,10,0" DockPanel.Dock="Top" Height="380" SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="服务名称" Width="275" DisplayMemberBinding="{Binding ServiceAlias}"/>
+                    <GridViewColumn Header="安装状态" Width="80" DisplayMemberBinding="{Binding ServiceInstallStatus}"/>
+                    <GridViewColumn Header="运行状态" Width="80" DisplayMemberBinding="{Binding ServiceRunningStatus}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Label DockPanel.Dock="Top" Content="程序运行日志" Margin="10,10,10,0" FontWeight="Bold" FontSize="13"></Label>
-        <RichTextBox Name="rtbLog" DockPanel.Dock="Top" Height="580" IsReadOnly="True" Margin="10,0,10,0" TextChanged="rtbLog_TextChanged" FontSize="12"></RichTextBox>
+        <RichTextBox Name="rtbLog" DockPanel.Dock="Top" Height="160" IsReadOnly="True" Margin="10,0,10,0" TextChanged="rtbLog_TextChanged" FontSize="12"></RichTextBox>
         <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"></RowDefinition>
@@ -22,7 +31,7 @@
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             <Button Name="btnInstall" Style="{StaticResource BtnInstallStyle}"  Grid.Row="1" Grid.Column="1" Content="安装服务" Margin="10,0,10,0" Click="btnInstall_Click"></Button>
-            <Button Name="btnCheck" Style="{StaticResource BtnCheckStyle}"  Grid.Row="1" Grid.Column="2" Content="检查服务" Margin="10,0,10,0" Click="btnCheck_Click"></Button>
+            <Button Name="btnRefresh" Style="{StaticResource BtnCheckStyle}"  Grid.Row="1" Grid.Column="2" Content="刷新状态" Margin="10,0,10,0" Click="btnRefresh_Click"></Button>
             <Button Name="btnRemove" Style="{StaticResource BtnRemoveStyle}" Grid.Row="1" Grid.Column="3" Content="卸载服务" Margin="10,0,10,0" Click="btnRemove_Click"></Button>
         </Grid>
     </DockPanel>
