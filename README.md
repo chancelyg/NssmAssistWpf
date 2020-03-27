@@ -1,7 +1,13 @@
 # Nssm Assist Wpf
-**NssmAssistWpf这是一个基于NSSM/Json配置文件灵活注册客户端成为后台常驻服务的WPF程序**，支持把本地EXE/BAT等执行文件注册成后台服务，也支持从指定HTTP网站下载ZIP压缩包解压并注册成后台服务
+**NssmAssistWpf这是一个基于NSSM/Json配置文件灵活注册客户端成为后台常驻服务的WPF程序**
 
-界面UI基于WPF开发，简洁明了，适合普通基础用户安装程序后台服务
+NssmAssistWpf支持把本地EXE/BAT等执行文件注册成后台服务，也支持从指定HTTP网站下载ZIP压缩包解压并注册成后台服务
+
+对于安装服务的程序列表定义使用配置文件来描述，无需修改代码即可自定义自己的插件服务列表
+
+界面UI基于WPF开发，简洁明了，适合打包后由普通用户安装程序后台服务
+
+程序基于[NSSM](https://github.com/kirillkovalenko/nssm)定制开发，解决NSSM需要敲指令与复杂的界面操作等不适合普通用户使用的弊端
 
 # 开发进度
 目前支持如下3个功能
